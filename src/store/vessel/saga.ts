@@ -1,4 +1,4 @@
-import { all, call, fork, put, takeEvery } from "redux-saga/effects";
+import { all, fork, put, takeEvery } from "redux-saga/effects";
 import { VesselActionTypes } from "./types";
 import { fetchError, fetchSuccess } from "./action";
 import inventory from "./mockdata";
