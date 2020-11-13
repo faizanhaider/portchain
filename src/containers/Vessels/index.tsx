@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchRequest, fetchScheduleRequest } from "../../store/vessel/action";
 import { ApplicationState } from "../../store/index";
 
+import generatePortsWithTotalPortCalls from "../../utils/generatePortsWithTotalPortCalls";
+
 const vesselState = (state: ApplicationState) => state.vessels;
 
 function Vessels() {
   const dispatch = useDispatch();
-  const vessels = useSelector(vesselState);
-  const vesselsImo: string[] = vessels.data.map((item) => item.imo);
+  const { data } = useSelector(vesselState);
+  const vesselsImo: string[] = data.map((item) => item.imo);
 
   useEffect(() => {
     dispatch(fetchRequest());
@@ -20,12 +22,34 @@ function Vessels() {
     }
   }, [...vesselsImo, dispatch]);
 
+  const ports = generatePortsWithTotalPortCalls(data);
+
   return (
-    <ul>
-      {vessels.data.map((vessel) => (
-        <li>{vessel.name}</li>
-      ))}
-    </ul>
+    <>
+      <ul>
+        {data.map((vessel) => (
+          <li>{vessel.name}</li>
+        ))}
+      </ul>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Code</th>
+          <th>Port Calls</th>
+        </thead>
+        <tbody>
+          {ports.map((port) => {
+            return (
+              <tr>
+                <td>{port.name}</td>
+                <td>{port.id}</td>
+                <td>{port.totalPortCalls}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </>
   );
 }
 

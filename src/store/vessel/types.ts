@@ -4,9 +4,10 @@ export interface Vessel {
   PortCalls: PortCall[];
 }
 
-interface Port {
+export interface Port {
   id: string;
   name: string;
+  totalPortCalls: number;
 }
 
 type PortCallDateType = Date | null;
@@ -22,7 +23,7 @@ type PortCallLogEntry = {
   updateField: keyof updatableFields;
 } & updatableFields;
 
-type PortCall = {
+export type PortCall = {
   port: Port;
   service: string;
 } & updatableFields & { logEntries: PortCallLogEntry[] };
