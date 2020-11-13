@@ -36,6 +36,7 @@ function Vessels() {
           <th>Name</th>
           <th>Code</th>
           <th>Port Calls</th>
+          <th>Port Calls Durations</th>
         </thead>
         <tbody>
           {ports.map((port) => {
@@ -44,6 +45,14 @@ function Vessels() {
                 <td>{port.name}</td>
                 <td>{port.id}</td>
                 <td>{port.totalPortCalls}</td>
+                <td>
+                  {port.portCallDurationsPercentile &&
+                    Object.entries<number>(
+                      port.portCallDurationsPercentile
+                    ).map(
+                      ([key, value], index) => `${key}: ${value}-----------`
+                    )}
+                </td>
               </tr>
             );
           })}

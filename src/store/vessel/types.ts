@@ -8,6 +8,8 @@ export interface Port {
   id: string;
   name: string;
   totalPortCalls: number;
+  portCallDurations: number[];
+  portCallDurationsPercentile?: { [K in number]: number };
 }
 
 type PortCallDateType = Date | null;
@@ -26,7 +28,12 @@ type PortCallLogEntry = {
 export type PortCall = {
   port: Port;
   service: string;
-} & updatableFields & { logEntries: PortCallLogEntry[] };
+} & Omit<updatableFields, "arrival" | "departure"> & {
+    arrival: Date;
+    departure: Date;
+  } & {
+    logEntries: PortCallLogEntry[];
+  };
 
 export type VesselSchedule = { vessel: Vessel; portCalls: PortCall[] };
 
