@@ -1,24 +1,16 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import Vessels from "./containers/Vessels";
 
-const Routes: React.SFC = () => (
-  <div>
-    <Switch>
-      <Route
-        exact
-        path="/"
-        render={() => (
-          <div>Homepage</div>
-        )}
-      />
-      <Route
-        path="/vessels"
-        render={() => (
-          <div>Vessels</div>
-        )}
-      />
-    </Switch>
-  </div>
-);
+function Routes() {
+  return (
+    <div>
+      <Switch>
+        <Route exact path="/" render={() => <Vessels />} />
+        <Route path="/notFound" render={() => <div>Not Found</div>} />
+      </Switch>
+    </div>
+  );
+}
 
 export default Routes;

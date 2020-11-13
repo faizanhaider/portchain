@@ -1,13 +1,13 @@
 import { all, fork, put, takeEvery } from "redux-saga/effects";
 import { VesselActionTypes } from "./types";
-import { fetchError, fetchSuccess } from "./action";
-import inventory from "./mockdata";
+import { fetchError, fetchSuccess, fetchScheduleSuccess } from "./action";
 
-function* handleFetch() {
+function* handleVesselsFetch() {
   try {
-    //this is a mock data.. replace this with real api
-    const data = inventory;
-    yield put(fetchSuccess(data));
+    const url =
+      "https://import-coding-challenge-api.portchain.com/api/v2/vessels";
+    const result = yield fetch(url).then((response) => response.json());
+    yield put(fetchSuccess(result));
   } catch (err) {
     if (err instanceof Error && err.stack) {
       yield put(fetchError(err.stack));
@@ -16,8 +16,27 @@ function* handleFetch() {
     }
   }
 }
+
+function* handleVesselScheduleFetch(action: { payload: string; type: string }) {
+  try {
+    const url = `https://import-coding-challenge-api.portchain.com/api/v2/schedule/${action.payload}`;
+    const result = yield fetch(url).then((response) => response.json());
+    yield put(fetchScheduleSuccess(result));
+  } catch (err) {
+    if (err instanceof Error && err.stack) {
+      yield put(fetchError(err.stack));
+    } else {
+      yield put(fetchError("An unknown error occurred."));
+    }
+  }
+}
+
 function* watchFetchRequest() {
-  yield takeEvery(VesselActionTypes.FETCH_REQUEST, handleFetch);
+  yield takeEvery(VesselActionTypes.FETCH_REQUEST, handleVesselsFetch);
+  yield takeEvery(
+    VesselActionTypes.FETCH_SCHEDULE_REQUEST,
+    handleVesselScheduleFetch
+  );
 }
 function* VesselSaga() {
   yield all([fork(watchFetchRequest)]);

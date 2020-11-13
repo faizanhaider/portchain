@@ -8,7 +8,7 @@ import { VesselReducer } from "./vessel/reducer";
 import { VesselState } from "./vessel/types";
 
 export interface ApplicationState {
-  vessel: VesselState;
+  vessels: VesselState;
 }
 
 export const rootSaga = function* rootSaga() {
@@ -17,6 +17,6 @@ export const rootSaga = function* rootSaga() {
 
 export const createRootReducer = (history: History) =>
   combineReducers({
-    vessel: VesselReducer,
-    router: connectRouter(history)
+    vessels: VesselReducer,
+    router: connectRouter(history),
   });
