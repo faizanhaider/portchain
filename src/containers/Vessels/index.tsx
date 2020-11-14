@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchRequest, fetchScheduleRequest } from "../../store/vessel/action";
 import { ApplicationState } from "../../store/index";
 
-import generatePortsWithTotalPortCalls from "../../utils/generatePortsWithTotalPortCalls";
+import generatePortsWithTotalPortCalls from "./generatePortsWithTotalPortCalls";
 
 const vesselState = (state: ApplicationState) => state.vessels;
 
