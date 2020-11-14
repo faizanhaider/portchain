@@ -1,15 +1,21 @@
 export interface Vessel {
   imo: string;
   name: string;
-  PortCalls: PortCall[];
+  portCalls: PortCall[];
+  portCallDelayStats: PortCallDelayDayStats[];
 }
+
+export type PortCallDelayDayStats = {
+  daysPoint: number;
+  percentiles: { [K in number]: number };
+};
 
 export interface Port {
   id: string;
   name: string;
   totalPortCalls: number;
   portCallDurations: number[];
-  portCallDurationsPercentile?: { [K in number]: number };
+  portCallDurationsPercentile: { [K in number]: number };
 }
 
 type PortCallDateType = Date | null;
@@ -22,7 +28,7 @@ type updatableFields = {
 };
 
 type PortCallLogEntry = {
-  updateField: keyof updatableFields;
+  updatedField: keyof updatableFields;
 } & updatableFields;
 
 export type PortCall = {

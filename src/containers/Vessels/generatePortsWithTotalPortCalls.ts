@@ -1,11 +1,11 @@
-import { Vessel, Port, PortCall } from "../store/vessel/types";
-import calculatePercentile from "./calculatePercentile";
-import sortBy from "lodash/sortBy";
+import { Vessel, Port, PortCall } from "../../store/vessel/types";
+import calculatePercentile from "../../utils/calculatePercentile";
+import { PortCallDurationPercentilePointsFortPorts } from "../../config";
 
 export default function generatePortsWithPortCalls(vessels: Vessel[]): Port[] {
   const portCallsList = vessels.reduce<PortCall[]>((acc, vessel) => {
-    if (vessel.PortCalls) {
-      return acc.concat(vessel.PortCalls);
+    if (vessel.portCalls) {
+      return acc.concat(vessel.portCalls);
     }
 
     return acc;
@@ -32,6 +32,7 @@ export default function generatePortsWithPortCalls(vessels: Vessel[]): Port[] {
         name,
         totalPortCalls: isOmitted ? 0 : 1,
         portCallDurations: isOmitted ? [] : [portCallDuration],
+        portCallDurationsPercentile: {},
       });
     } else if (!isOmitted) {
       ports[existingPortIndex].totalPortCalls++;
@@ -44,8 +45,8 @@ export default function generatePortsWithPortCalls(vessels: Vessel[]): Port[] {
   portsList.forEach(
     (port) =>
       (port.portCallDurationsPercentile = calculatePercentile(
-        sortBy(port.portCallDurations),
-        [5, 20, 50, 75, 90]
+        port.portCallDurations,
+        PortCallDurationPercentilePointsFortPorts
       ))
   );
 

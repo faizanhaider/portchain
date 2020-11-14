@@ -1,5 +1,10 @@
 import { Reducer } from "redux";
 import { VesselActionTypes, VesselState } from "./types";
+import calculatePortCallDelayStats from "../../containers/Vessels/calculatePortCallDelayStats";
+import {
+  PortCallDelaysForVessels,
+  PorCallDelaysPercentilePointsForVessels,
+} from "../../config";
 
 export const initialState: VesselState = {
   data: [],
@@ -27,7 +32,12 @@ const reducer: Reducer<VesselState> = (state = initialState, action) => {
         payload: { vessel, portCalls },
       } = action;
       const vesselIndex = data.findIndex((item) => item.imo === vessel.imo);
-      data[vesselIndex].PortCalls = portCalls;
+      data[vesselIndex].portCalls = portCalls;
+      data[vesselIndex].portCallDelayStats = calculatePortCallDelayStats(
+        portCalls,
+        PortCallDelaysForVessels,
+        PorCallDelaysPercentilePointsForVessels
+      );
 
       return { ...Object.assign(state, data), loading: false };
     }

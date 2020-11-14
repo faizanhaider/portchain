@@ -1,3 +1,5 @@
+import sortBy from "lodash/sortBy";
+
 function calculatePercentile(values: number[], percentile: number) {
   if (values.length === 0) return 0;
 
@@ -14,8 +16,11 @@ export default function percentiles(
   values: number[],
   percentilePoints: number[]
 ) {
+  const sortedValues = sortBy(values);
   return percentilePoints
-    .map((percentilePoint) => calculatePercentile(values, percentilePoint))
+    .map((percentilePoint) =>
+      calculatePercentile(sortedValues, percentilePoint)
+    )
     .reduce<{ [K in number]: number }>((result, value, index) => {
       result[percentilePoints[index]] = Number.parseFloat(value.toFixed(2));
 
