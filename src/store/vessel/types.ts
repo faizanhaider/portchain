@@ -52,7 +52,7 @@ export enum VesselActionTypes {
 }
 
 export interface VesselState {
-  readonly loading: boolean;
+  readonly totalApiCalls: number;
   readonly data: Vessel[];
   readonly errors?: string;
 }
