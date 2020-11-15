@@ -6,6 +6,25 @@ You can use `npm` as well as `yarn` but I'm listing yarn commands.
 
 First install all the dependencies `yarn install`
 
+In this project I'm using following technologies to best describe my technical skills
+  
+  - React-Redux
+  - Redux-Saga
+  - React Hooks (useEffect etc to describe react component lifecycle)
+  - Material UI with style Hooks
+  - Using Hooks to get data from stores and dispatch actions instead of using connect with container component
+  - React Router to manage different routes. I only provide two routes `/` & `/notFound`
+
+Code is organized in following folder
+
+  - Containers (Connecting store to component, dispatch actions and select data from store)
+  - Components (React components nothing else)
+  - Store (Contains folder with model name like `Vessel` and type describes the model)
+    - Actions
+    - Reducers
+    - Saga
+    - Types
+
 ## Available Scripts
 
 In the project directory, you can run:
