@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Getting Started with Portchain
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+You can use `npm` as well as `yarn` but I'm listing yarn commands.
+
+First install all the dependencies `yarn install`
 
 ## Available Scripts
 
