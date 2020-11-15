@@ -99,8 +99,8 @@ const VesselDataTable: React.FC<Props> = ({ rows }) => {
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell align="right">IMO</TableCell>
-            <TableCell>Name</TableCell>
+            <TableCell align="right">Port IMO</TableCell>
+            <TableCell>Port Name</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

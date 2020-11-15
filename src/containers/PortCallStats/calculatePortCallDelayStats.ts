@@ -1,5 +1,5 @@
 import { PortCall, PortCallDelayDayStats } from "../../store/vessel/types";
-import calculatePercentile from "../../utils/calculatePercentile";
+import calculatePercentiles from "../../utils/calculatePercentiles";
 
 import sortBy from "lodash/sortBy";
 
@@ -56,7 +56,7 @@ export default function calculateVesselPortCallDelayStats(
     (acc, daysPoint) => {
       acc.push({
         daysPoint,
-        percentiles: calculatePercentile(
+        percentiles: calculatePercentiles(
           portCallDelays.map((delays) => delays[daysPoint]),
           percentilePoints
         ),

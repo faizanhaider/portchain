@@ -1,6 +1,6 @@
 import sortBy from "lodash/sortBy";
 
-function calculatePercentile(values: number[], percentile: number) {
+export function calculatePercentile(values: number[], percentile: number) {
   if (values.length === 0) return 0;
 
   const rank = (percentile / 100) * values.length;
@@ -12,7 +12,7 @@ function calculatePercentile(values: number[], percentile: number) {
   return values[Math.ceil(rank)];
 }
 
-export default function percentiles(
+export default function calculatePercentiles(
   values: number[],
   percentilePoints: number[]
 ) {

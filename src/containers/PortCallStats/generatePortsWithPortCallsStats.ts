@@ -1,5 +1,5 @@
 import { Vessel, Port, PortCall } from "../../store/vessel/types";
-import calculatePercentile from "../../utils/calculatePercentile";
+import calculatePercentiles from "../../utils/calculatePercentiles";
 import { PortCallDurationPercentilePointsFortPorts } from "../../config";
 
 export default function generatePortsWithPortCallsStats(
@@ -46,7 +46,7 @@ export default function generatePortsWithPortCallsStats(
 
   portsList.forEach(
     (port) =>
-      (port.portCallDurationsPercentile = calculatePercentile(
+      (port.portCallDurationsPercentile = calculatePercentiles(
         port.portCallDurations,
         PortCallDurationPercentilePointsFortPorts
       ))
