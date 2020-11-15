@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 import { VesselActionTypes, VesselState } from "./types";
-import calculatePortCallDelayStats from "../../containers/Vessels/calculatePortCallDelayStats";
+import calculatePortCallDelayStats from "../../containers/PortCallStats/calculatePortCallDelayStats";
 import {
   PortCallDelaysForVessels,
   PorCallDelaysPercentilePointsForVessels,

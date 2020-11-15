@@ -2,7 +2,9 @@ import { Vessel, Port, PortCall } from "../../store/vessel/types";
 import calculatePercentile from "../../utils/calculatePercentile";
 import { PortCallDurationPercentilePointsFortPorts } from "../../config";
 
-export default function generatePortsWithPortCalls(vessels: Vessel[]): Port[] {
+export default function generatePortsWithPortCallsStats(
+  vessels: Vessel[]
+): Port[] {
   const portCallsList = vessels.reduce<PortCall[]>((acc, vessel) => {
     if (vessel.portCalls) {
       return acc.concat(vessel.portCalls);

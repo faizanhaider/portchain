@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Vessels from "./containers/Vessels";
+import PortCallStats from "./containers/PortCallStats";
 
 function Routes() {
   return (
     <div>
       <Switch>
-        <Route exact path="/" render={() => <Vessels />} />
+        <Route exact path="/" render={() => <PortCallStats />} />
         <Route path="/notFound" render={() => <div>Not Found</div>} />
       </Switch>
     </div>
