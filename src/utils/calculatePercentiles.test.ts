@@ -37,7 +37,7 @@ describe("calculatePercentiles", () => {
     });
 
     describe("given non-empty percentile point", () => {
-      it("should return an object with percentile points as keys", () => {
+      it("should return an object with percentile points as keys and value 0", () => {
         const percentiles = calculatePercentiles(values, [25, 50, 75]);
         expect(percentiles).toEqual({ 25: 0, 50: 0, 75: 0 });
       });
