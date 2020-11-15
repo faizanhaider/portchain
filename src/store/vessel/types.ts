@@ -32,7 +32,10 @@ type PortCallLogEntry = {
 } & updatableFields;
 
 export type PortCall = {
-  port: Port;
+  port: Omit<
+    Port,
+    "totalPortCalls" | "portCallDurations" | "portCallDurationsPercentile"
+  >;
   service: string;
 } & Omit<updatableFields, "arrival" | "departure"> & {
     arrival: Date;

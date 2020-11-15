@@ -1,7 +1,7 @@
 import calculatePercentiles from "./calculatePercentiles";
 
 describe("calculatePercentiles", () => {
-  describe("For a number array", () => {
+  describe("For a valid data number array", () => {
     const values = [15, 12, 12, 1, 3, 5, 6, 7];
 
     describe("given empty percentile point", () => {
@@ -26,7 +26,7 @@ describe("calculatePercentiles", () => {
     });
   });
 
-  describe("For an empty array", () => {
+  describe("For an empty data array", () => {
     const values: number[] = [];
 
     describe("given empty percentile point", () => {
