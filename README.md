@@ -11,15 +11,18 @@ In this project I'm using following technologies to best describe my technical s
   - React-Redux
   - Redux-Saga
   - React Hooks (useEffect etc to describe react component lifecycle)
-  - Material UI with style Hooks
+  - Styled Components for styling
   - Using Hooks to get data from stores and dispatch actions instead of using connect with container component
   - React Router to manage different routes. I only provide two routes `/` & `/notFound`
+  - Enzyme and jest for testing components
+  - I'm using github v3 api for data retreival
+  - Built with responsiveness in mind with min-width upto 507px
 
 Code is organized in following folder
 
   - Containers (Connecting store to component, dispatch actions and select data from store)
   - Components (React components nothing else)
-  - Store (Contains folder with model name like `Vessel` and type describes the model)
+  - Store (Contains folder with model name like `Issues` and type describes the model)
     - Actions
     - Reducers
     - Saga
